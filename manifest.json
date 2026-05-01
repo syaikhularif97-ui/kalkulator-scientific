@@ -1,15 +1,16 @@
 {
   "short_name": "Kalkulator",
-  "name": "Kalkulator Saintifik",
+  "name": "Kalkulator Saintifik Digital",
   "icons": [
     {
       "src": "icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#0a0c12",
   "background_color": "#ffffff"
 }
