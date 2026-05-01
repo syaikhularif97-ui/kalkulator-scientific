@@ -1,5 +1,5 @@
 const cacheName = "kalkulator-v1";
-const assets = ["./", "./index.html"];
+const assets = ["./", "./index.html", "./manifest.json", "./icon.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -7,6 +7,10 @@ self.addEventListener("install", (e) => {
       return cache.addAll(assets);
     })
   );
+});
+
+self.addEventListener("activate", (e) => {
+  e.waitUntil(self.clients.claim());
 });
 
 self.addEventListener("fetch", (e) => {
