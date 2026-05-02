@@ -1,5 +1,10 @@
 const cacheName = "kalkulator-v1";
-const assets = ["./", "./index.html", "./manifest.json", "./icon.png"];
+const assets = [
+  "index.html",
+  "manifest.json",
+  "sw.js",
+  "icon.png"
+];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -10,7 +15,13 @@ self.addEventListener("install", (e) => {
 });
 
 self.addEventListener("activate", (e) => {
-  e.waitUntil(self.clients.claim());
+  e.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.filter((key) => key !== cacheName).map((key) => caches.delete(key))
+      );
+    }).then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener("fetch", (e) => {
